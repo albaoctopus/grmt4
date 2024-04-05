@@ -1,4 +1,5 @@
 import {
+  ConnectWallet,
   useContract,
   useOwnedNFTs,
   useValidDirectListings,
@@ -59,12 +60,8 @@ export default function ProfilePage() {
             background: `linear-gradient(90deg, ${randomColor1}, ${randomColor2})`,
           }}
         />
-        <div
-          className={styles.profilePicture}
-          style={{
-            background: `linear-gradient(90deg, ${randomColor3}, ${randomColor4})`,
-          }}
-        />
+       <ConnectWallet/>
+       
         <h1 className={styles.profileName}>
           {router.query.address ? (
             router.query.address.toString().substring(0, 4) +
@@ -82,22 +79,10 @@ export default function ProfilePage() {
         ${tab === "nfts" ? styles.activeTab : ""}`}
           onClick={() => setTab("nfts")}
         >
-          NFTs
+          SERTIFICATES
         </h3>
-        <h3
-          className={`${styles.tab} 
-        ${tab === "listings" ? styles.activeTab : ""}`}
-          onClick={() => setTab("listings")}
-        >
-          Listings
-        </h3>
-        <h3
-          className={`${styles.tab}
-        ${tab === "auctions" ? styles.activeTab : ""}`}
-          onClick={() => setTab("auctions")}
-        >
-          Auctions
-        </h3>
+      
+     
       </div>
 
       <div

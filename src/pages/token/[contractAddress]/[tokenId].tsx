@@ -126,23 +126,7 @@ export default function TokenPage({ nft, contractMetadata }: Props) {
             />
 
             <div className={styles.descriptionContainer}>
-              <h3 className={styles.descriptionTitle}>Description</h3>
-              <p className={styles.description}>{nft.metadata.description}</p>
-
-              <h3 className={styles.descriptionTitle}>Traits</h3>
-
-              <div className={styles.traitsContainer}>
-                {Object.entries(nft?.metadata?.attributes || {}).map(
-                  ([key, value]) => (
-                    <div className={styles.traitContainer} key={key}>
-                      <p className={styles.traitName}>{key}</p>
-                      <p className={styles.traitValue}>
-                        {value?.toString() || ""}
-                      </p>
-                    </div>
-                  )
-                )}
-              </div>
+              
 
               <h3 className={styles.descriptionTitle}>History</h3>
 
@@ -229,122 +213,17 @@ export default function TokenPage({ nft, contractMetadata }: Props) {
 
             <div className={styles.pricingContainer}>
               {/* Pricing information */}
-              <div className={styles.pricingInfo}>
-                <p className={styles.label}>Price</p>
-                <div className={styles.pricingValue}>
-                  {loadingContract || loadingDirect || loadingAuction ? (
-                    <Skeleton width="120" height="24" />
-                  ) : (
-                    <>
-                      {directListing && directListing[0] ? (
-                        <>
-                          {directListing[0]?.currencyValuePerToken.displayValue}
-                          {" " + directListing[0]?.currencyValuePerToken.symbol}
-                        </>
-                      ) : auctionListing && auctionListing[0] ? (
-                        <>
-                          {auctionListing[0]?.buyoutCurrencyValue.displayValue}
-                          {" " + auctionListing[0]?.buyoutCurrencyValue.symbol}
-                        </>
-                      ) : (
-                        "Not for sale"
-                      )}
-                    </>
-                  )}
-                </div>
-
-                <div>
-                  {loadingAuction ? (
-                    <Skeleton width="120" height="24" />
-                  ) : (
-                    <>
-                      {auctionListing && auctionListing[0] && (
-                        <>
-                          <p className={styles.label} style={{ marginTop: 12 }}>
-                            Bids starting from
-                          </p>
-
-                          <div className={styles.pricingValue}>
-                            {
-                              auctionListing[0]?.minimumBidCurrencyValue
-                                .displayValue
-                            }
-                            {" " +
-                              auctionListing[0]?.minimumBidCurrencyValue.symbol}
-                          </div>
-                        </>
-                      )}
-                    </>
-                  )}
-                </div>
-              </div>
+              
             </div>
 
             {loadingContract || loadingDirect || loadingAuction ? (
               <Skeleton width="100%" height="164" />
             ) : (
               <>
-                <Web3Button
-                  contractAddress={MARKETPLACE_ADDRESS}
-                  action={async () => await buyListing()}
-                  className={styles.btn}
-                  onSuccess={() => {
-                    toast(`Purchase success!`, {
-                      icon: "✅",
-                      style: toastStyle,
-                      position: "bottom-center",
-                    });
-                  }}
-                  onError={(e) => {
-                    toast(`Purchase failed! Reason: ${e.message}`, {
-                      icon: "❌",
-                      style: toastStyle,
-                      position: "bottom-center",
-                    });
-                  }}
-                >
-                  Buy at asking price
-                </Web3Button>
+               
 
-                <div className={`${styles.listingTimeContainer} ${styles.or}`}>
-                  <p className={styles.listingTime}>or</p>
-                </div>
-
-                <input
-                  className={styles.input}
-                  defaultValue={
-                    auctionListing?.[0]?.minimumBidCurrencyValue
-                      ?.displayValue || 0
-                  }
-                  type="number"
-                  step={0.000001}
-                  onChange={(e) => {
-                    setBidValue(e.target.value);
-                  }}
-                />
-
-                <Web3Button
-                  contractAddress={MARKETPLACE_ADDRESS}
-                  action={async () => await createBidOrOffer()}
-                  className={styles.btn}
-                  onSuccess={() => {
-                    toast(`Bid success!`, {
-                      icon: "✅",
-                      style: toastStyle,
-                      position: "bottom-center",
-                    });
-                  }}
-                  onError={(e) => {
-                    console.log(e);
-                    toast(`Bid failed! Reason: ${e.message}`, {
-                      icon: "❌",
-                      style: toastStyle,
-                      position: "bottom-center",
-                    });
-                  }}
-                >
-                  Place bid
-                </Web3Button>
+               
+               
               </>
             )}
           </div>

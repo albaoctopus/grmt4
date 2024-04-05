@@ -74,8 +74,8 @@ export default function ProfilePage() {
       objectFit: 'contain',
     }}
   />
-</div>
-       <ConnectWallet/>
+</div >
+       <ConnectWallet className="mt-15"/>
        
        
       </div>

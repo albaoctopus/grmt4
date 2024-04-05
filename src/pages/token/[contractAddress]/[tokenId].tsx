@@ -228,6 +228,9 @@ export default function TokenPage({ nft, contractMetadata }: Props) {
             )}
           </div>
         </div>
+        <Link href="/" className={styles.homeButton}>
+        <span className={styles.homeButtonIcon}>🏠</span>
+      </Link>
       </Container>
     </>
   );

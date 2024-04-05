@@ -17,6 +17,7 @@ import {
 } from "../../const/contractAddresses";
 import styles from "../../styles/Profile.module.css";
 import randomColor from "../../util/randomColor";
+import Image from 'next/image';
 
 const [randomColor1, randomColor2, randomColor3, randomColor4] = [
   randomColor(),
@@ -54,23 +55,29 @@ export default function ProfilePage() {
   return (
     <Container maxWidth="lg">
       <div className={styles.profileHeader}>
-        <div
-          className={styles.coverImage}
-          style={{
-            background: `linear-gradient(90deg, ${randomColor1}, ${randomColor2})`,
-          }}
-        />
+      <div
+  className={styles.coverImage}
+  style={{
+    background: `linear-gradient(90deg, ${randomColor1}, ${randomColor2})`,
+    position: 'relative',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  }}
+>
+  <Image
+    src="/GM_Logo.png"
+    alt="Cover Image"
+    width={300}
+    height={300}
+    style={{
+      objectFit: 'contain',
+    }}
+  />
+</div>
        <ConnectWallet/>
        
-        <h1 className={styles.profileName}>
-          {router.query.address ? (
-            router.query.address.toString().substring(0, 4) +
-            "..." +
-            router.query.address.toString().substring(38, 42)
-          ) : (
-            <Skeleton width="320" />
-          )}
-        </h1>
+       
       </div>
 
       <div className={styles.tabs}>

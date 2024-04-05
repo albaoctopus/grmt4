@@ -20,17 +20,21 @@ const Home: NextPage = () => {
     <div className={styles.container}>
       <ConnectEmbed
         style={{
-          backgroundImage: "linear-gradient(to bottom, #931418, #070708, #000)",
+          
           borderRadius: 0,
           backgroundSize: "cover",
-          borderColor: "#00FF99", /* Neon accent border */
-          color: "#00FF91", /* Neon green text */
+          borderColor: "#17a1bf", /* Neon accent border */
+          color: "#17A1BF", /* Neon green text */
           filter: "drop-shadow(0px 0px 5px #00FF99)",
           fontFamily: "monospace",
           letterSpacing: "2px",
         }}
         showThirdwebBranding={false}
         className="font-extrabold uppercase"
+        theme={darkTheme({
+          colors: { accentButtonBg: " #17a1bf", danger: "#17a1bf" },
+          
+        })}
       />
       {address && (
         <>

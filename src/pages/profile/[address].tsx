@@ -100,7 +100,7 @@ export default function ProfilePage() {
         <NFTGrid
           data={ownedNfts}
           isLoading={loadingOwnedNfts}
-          emptyText="Looks like you don't have any NFTs from this collection. Head to the buy page to buy some!"
+          emptyText="Looks like you don't have any NFTs from this collection."
         />
       </div>
 

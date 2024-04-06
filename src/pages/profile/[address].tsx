@@ -86,7 +86,7 @@ export default function ProfilePage() {
         ${tab === "nfts" ? styles.activeTab : ""}`}
           onClick={() => setTab("nfts")}
         >
-          SERTIFICATES
+          CERTIFICATES
         </h3>
       
      

@@ -137,7 +137,7 @@ export default function TokenPage({ nft, contractMetadata }: Props) {
                     className={styles.eventsContainer}
                   >
                     <div className={styles.eventContainer}>
-                      <p className={styles.traitName}>Event</p>
+                      <p className={styles.traitName}>Events</p>
                       <p className={styles.traitValue}>
                         {
                           // if last event in array, then it's a mint

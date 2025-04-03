@@ -1,30 +1,33 @@
 import type { NextPage } from "next";
-import { ConnectEmbed, darkTheme, ConnectWallet, useAddress, useContract, useTokenBalance, Theme } from "@thirdweb-dev/react";
+import { ConnectButton, ConnectEmbed, useActiveAccount, darkTheme } from "thirdweb/react";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import styles from "../styles/Home.module.css";
+import client from "../lib/client";
+import { NETWORK } from "../const/contractAddresses";
 
 const Home: NextPage = () => {
-  const address = useAddress();
+  const account = useActiveAccount();
   const router = useRouter();
 
   useEffect(() => {
-    if (address) {
-      router.push(`/profile/${address}`);
+    if (account) {
+      router.push(`/profile/${account.address}`);
     }
-  }, [address, router]);
+  }, [account, router]);
 
   return (
     <div className={styles.container}>
       <ConnectEmbed
+        client={client}
+        chain={NETWORK}
         style={{
-          
           borderRadius: 0,
           backgroundSize: "cover",
-          borderColor: "#17a1bf", /* Neon accent border */
-          color: "#17A1BF", /* Neon green text */
+          borderColor: "#17a1bf",
+          color: "#17A1BF",
           filter: "drop-shadow(0px 0px 5px #00FF99)",
           fontFamily: "monospace",
           letterSpacing: "2px",
@@ -32,14 +35,37 @@ const Home: NextPage = () => {
         showThirdwebBranding={false}
         className="font-extrabold uppercase"
         theme={darkTheme({
-          colors: { accentButtonBg: " #17a1bf", danger: "#17a1bf" },
-          
+          colors: { 
+            accentButtonBg: "#17a1bf", 
+            danger: "#17a1bf" 
+          },
         })}
+        onConnect={() => {
+          console.log("connected");
+          if (account) {
+            router.push(`/profile/${account.address}`);
+          }
+        }}
       />
-      {address && (
+      {account && (
         <>
-          <ConnectWallet />
-          <Link className={styles.link} href={`/profile/${address}`}>
+          <ConnectButton 
+            theme="dark"
+            client={client}
+            chain={NETWORK}
+            style={{
+              backgroundColor: "#17a1bf",
+              borderRadius: "8px",
+              padding: "12px 24px",
+              fontSize: "16px",
+              fontWeight: "600",
+              color: "#fff",
+              border: "none",
+              cursor: "pointer",
+              transition: "all 0.2s ease-in-out"
+            }}
+          />
+          <Link className={styles.link} href={`/profile/${account.address}`}>
             <Image
               className={styles.profileImage}
               src="/user-icon.png"

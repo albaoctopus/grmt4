@@ -1,14 +1,16 @@
-import { ConnectWallet, useAddress } from "@thirdweb-dev/react";
+import { ConnectButton, useActiveAccount } from "thirdweb/react";
 import Image from "next/image";
 import Link from "next/link";
 import styles from "./Navbar.module.css";
+import client from "../../lib/client";
+import { NETWORK } from "../../const/contractAddresses";
 
 /**
  * Navigation bar that shows up on all pages.
  * Rendered in _app.tsx file above the page content.
  */
 export function Navbar() {
-  const address = useAddress();
+  const account = useActiveAccount();
 
   return (
     <div className={styles.navContainer}>
@@ -35,10 +37,25 @@ export function Navbar() {
 
         <div className={styles.navRight}>
           <div className={styles.navConnect}>
-            <ConnectWallet theme="dark" btnTitle="Connect Wallet" />
+            <ConnectButton 
+              theme="dark"
+              client={client}
+              chain={NETWORK}
+              style={{
+                backgroundColor: "#17a1bf",
+                borderRadius: "8px",
+                padding: "12px 24px",
+                fontSize: "16px",
+                fontWeight: "600",
+                color: "#fff",
+                border: "none",
+                cursor: "pointer",
+                transition: "all 0.2s ease-in-out"
+              }}
+            />
           </div>
-          {address && (
-            <Link className={styles.link} href={`/profile/${address}`}>
+          {account && (
+            <Link className={styles.link} href={`/profile/${account.address}`}>
               <Image
                 className={styles.profileImage}
                 src="/user-icon.png"

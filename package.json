@@ -9,9 +9,7 @@
 		"lint": "next lint"
 	},
 	"dependencies": {
-		"@thirdweb-dev/auth": "^4.1.35",
-		"@thirdweb-dev/react": "^4.4.11",
-		"@thirdweb-dev/sdk": "^4.0.38",
+		"thirdweb": "^5.16.1",
 		"next": "14.0.4",
 		"nextjs-progressbar": "^0.0.16",
 		"react": "^18",
